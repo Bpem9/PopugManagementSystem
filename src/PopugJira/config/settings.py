@@ -1,7 +1,10 @@
 from pathlib import Path
-import dj_database_url
 import os
 
+import dj_database_url
+from dotenv import load_dotenv
+
+load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsecure-secret-key')
@@ -15,6 +18,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'popug_jira.apps.PopugJiraConfig',
+    'rest_framework',
+
 ]
 
 MIDDLEWARE = [
@@ -27,7 +33,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'PopugAcc.urls'
+ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
     {
@@ -45,8 +51,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'PopugAcc.wsgi.application'
-
+WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.parse(
@@ -55,7 +60,6 @@ DATABASES = {
         conn_health_checks=True,
     )
 }
-
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -72,7 +76,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
@@ -84,3 +87,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# LOGIN_REDIRECT_URL = 'https://example.com/'
+LOGIN_URL = 'http://localhost:8000/o/authorize/'
+
+CLIENT_ID = os.environ.get('CLIENT_ID')
+CLIENT_SECRET = os.environ.get('CLIENT_SECRET')
+

@@ -1,0 +1,25 @@
+FROM python:3.10.11-bullseye
+
+# Define complementary software versions
+ENV POETRY_VERSION 1.5.1
+
+# Set python-specific environment variables
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+WORKDIR /app/popug_auth
+
+# Install Firefox and geckodriver
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install Poetry and python dependencies
+RUN pip install poetry==$POETRY_VERSION && \
+    poetry config virtualenvs.create false
+
+COPY ./poetry.lock ./pyproject.toml .
+RUN poetry install
+
+# Copy the rest of the application
+COPY src/popug_auth .
