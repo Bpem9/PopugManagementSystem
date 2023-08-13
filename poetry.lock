@@ -317,6 +317,21 @@ oauthlib = ">=3.1.0"
 requests = ">=2.13.0"
 
 [[package]]
+name = "django-rest-registration"
+version = "0.8.2"
+description = "User registration REST API, based on django-rest-framework"
+optional = false
+python-versions = ">=3.5"
+files = [
+    {file = "django-rest-registration-0.8.2.tar.gz", hash = "sha256:930fee0b88acf845936cb522c23e0d197b75f89f37dc3758a83eb633c443aac8"},
+    {file = "django_rest_registration-0.8.2-py3-none-any.whl", hash = "sha256:5e3e9e7dc3fabc6cd39f024c82e7d4d18cda0ca216b2a60f64e0b1c4c65af3d9"},
+]
+
+[package.dependencies]
+Django = ">=2.0"
+djangorestframework = ">=3.3"
+
+[[package]]
 name = "djangorestframework"
 version = "3.14.0"
 description = "Web APIs for Django, made easy."
@@ -451,6 +466,20 @@ files = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
     {file = "pycparser-2.21.tar.gz", hash = "sha256:e644fdec12f7872f86c58ff790da456218b10f863970249516d60a5eaca77206"},
 ]
+
+[[package]]
+name = "python-dotenv"
+version = "1.0.0"
+description = "Read key-value pairs from a .env file and set them as environment variables"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "python-dotenv-1.0.0.tar.gz", hash = "sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba"},
+    {file = "python_dotenv-1.0.0-py3-none-any.whl", hash = "sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a"},
+]
+
+[package.extras]
+cli = ["click (>=5.0)"]
 
 [[package]]
 name = "pytz"
@@ -626,4 +655,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "4ea08a56813d99665ca819b7a1ae1ed349e1c17ff6cef59c163e764f93a5ab3f"
+content-hash = "3b2896f54b4a82b528e4ae2f07d80f797283b5e88225c4d5f370d22faefdc768"

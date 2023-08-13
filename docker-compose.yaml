@@ -1,0 +1,42 @@
+version: "3.8"
+
+x-server-template: &server-template
+  restart: always
+  build:
+    context: .
+    args:
+      PYTHONUNBUFFERED: 1
+      PYTHONDONTWRITEBYTECODE: 1
+  volumes:
+    - ./src:/app
+  depends_on:
+    - redis
+    - database
+
+services:
+  app:
+    <<: *server-template
+    build:
+      dockerfile: ./Dockerfile-popugauth
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - 8000:8000
+
+  jira:
+    <<: *server-template
+    build:
+      dockerfile: ./Dockerfile-popugjira
+    command: python manage.py runserver 0.0.0.0:8200
+    ports:
+      - 8200:8200
+
+  database:
+    image: postgres:15.3-alpine
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_HOST=database
+      - POSTGRES_PORT=5432
+    ports:
+      - 5432:5432
